@@ -1,0 +1,199 @@
+public class Solution {
+    
+public String longestNiceSubstring(String s) {
+        if (s.length() < 2) {
+            return "";
+        }
+        
+        Set<Character> charSet = new HashSet<>();
+        for (char c : s.toCharArray()) {
+            charSet.add(c);
+        }
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (!charSet.contains(Character.toUpperCase(s.charAt(i))) || 
+                !charSet.contains(Character.toLowerCase(s.charAt(i)))) {
+                String left = longestNiceSubstring(s.substring(0, i));
+                String right = longestNiceSubstring(s.substring(i + 1));
+                return left.length() >= right.length() ? left : right;
+            }
+        }
+        
+        return s;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.longestNiceSubstring("YazaAay")); // Output: "aAa"
+        System.out.println(solution.longestNiceSubstring("Bb")); // Output: "Bb"
+        System.out.println(solution.longestNiceSubstring("c")); // Output: ""
+    }
+}
+public class Solution {
+    
+    public int reverseBits(int n) {
+        int result = 0;
+        for (int i = 0; i < 32; i++) {
+            result <<= 1;
+            result |= (n & 1);
+            n >>= 1;
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.reverseBits(0b00000010100101000001111010011100)); // Output: 964176192
+        System.out.println(solution.reverseBits(0b11111111111111111111111111111101)); // Output: 3221225471
+    }
+}
+
+public class Solution {
+    
+    public int reverseBits(int n) {
+        int result = 0;
+        for (int i = 0; i < 32; i++) {
+            result <<= 1;
+            result |= (n & 1);
+            n >>= 1;
+        }
+        return result;
+    }
+    
+    public int hammingWeight(int n) {
+        int count = 0;
+        while (n != 0) {
+            count += (n & 1);
+            n >>= 1;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.reverseBits(0b00000010100101000001111010011100)); // Output: 964176192
+        System.out.println(solution.reverseBits(0b11111111111111111111111111111101)); // Output: 3221225471
+        
+        System.out.println(solution.hammingWeight(11)); // Output: 3
+        System.out.println(solution.hammingWeight(128)); // Output: 1
+        System.out.println(solution.hammingWeight(2147483645)); // Output: 30
+    }
+}
+public class Solution {
+    
+    public int reverseBits(int n) {
+        int result = 0;
+        for (int i = 0; i < 32; i++) {
+            result <<= 1;
+            result |= (n & 1);
+            n >>= 1;
+        }
+        return result;
+    }
+    
+    public int hammingWeight(int n) {
+        int count = 0;
+        while (n != 0) {
+            count += (n & 1);
+            n >>= 1;
+        }
+        return count;
+    }
+    
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0], currentSum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.reverseBits(0b00000010100101000001111010011100)); // Output: 964176192
+        System.out.println(solution.reverseBits(0b11111111111111111111111111111101)); // Output: 3221225471
+        
+        System.out.println(solution.hammingWeight(11)); // Output: 3
+        System.out.println(solution.hammingWeight(128)); // Output: 1
+        System.out.println(solution.hammingWeight(2147483645)); // Output: 30
+        
+        System.out.println(solution.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4})); // Output: 6
+        System.out.println(solution.maxSubArray(new int[]{1})); // Output: 1
+        System.out.println(solution.maxSubArray(new int[]{5,4,-1,7,8})); // Output: 23
+    }
+}
+
+
+public class Solution {
+    
+    public int reverseBits(int n) {
+        int result = 0;
+        for (int i = 0; i < 32; i++) {
+            result <<= 1;
+            result |= (n & 1);
+            n >>= 1;
+        }
+        return result;
+    }
+    
+    public int hammingWeight(int n) {
+        int count = 0;
+        while (n != 0) {
+            count += (n & 1);
+            n >>= 1;
+        }
+        return count;
+    }
+    
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0], currentSum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+        return maxSum;
+    }
+    
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+        
+        int row = 0, col = matrix[0].length - 1;
+        while (row < matrix.length && col >= 0) {
+            if (matrix[row][col] == target) {
+                return true;
+            } else if (matrix[row][col] > target) {
+                col--;
+            } else {
+                row++;
+            }
+        }
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.reverseBits(0b00000010100101000001111010011100)); // Output: 964176192
+        System.out.println(solution.reverseBits(0b11111111111111111111111111111101)); // Output: 3221225471
+        
+        System.out.println(solution.hammingWeight(11)); // Output: 3
+        System.out.println(solution.hammingWeight(128)); // Output: 1
+        System.out.println(solution.hammingWeight(2147483645)); // Output: 30
+        
+        System.out.println(solution.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4})); // Output: 6
+        System.out.println(solution.maxSubArray(new int[]{1})); // Output: 1
+        System.out.println(solution.maxSubArray(new int[]{5,4,-1,7,8})); // Output: 23
+        
+        int[][] matrix = {
+            {1, 4, 7, 11, 15},
+            {2, 5, 8, 12, 19},
+            {3, 6, 9, 16, 22},
+            {10, 13, 14, 17, 24},
+            {18, 21, 23, 26, 30}
+        };
+        System.out.println(solution.searchMatrix(matrix, 5)); // Output: true
+        System.out.println(solution.searchMatrix(matrix, 20)); // Output: false
+    }
+}
